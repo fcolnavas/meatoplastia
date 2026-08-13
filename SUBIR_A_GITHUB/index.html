@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#0b3b43" />
+<title>¿Qué harías tú? — Meatoplastia</title>
+<style>
+:root{--bg:#eef5f4;--ink:#163438;--muted:#5c7275;--card:#fff;--accent:#0d6771;--accent2:#154e57;--line:#d8e5e3;--good:#e9f4f1;--shadow:0 16px 42px rgba(17,55,60,.12)}
+*{box-sizing:border-box} body{margin:0;background:linear-gradient(180deg,#eaf3f2 0,#f7faf9 48%,#edf5f4 100%);color:var(--ink);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;min-height:100vh}
+button{font:inherit}.app{min-height:100vh;display:flex;flex-direction:column}.top{position:sticky;top:0;z-index:20;background:rgba(246,250,249,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topin{max-width:760px;margin:auto;padding:12px 18px}.brand{display:flex;justify-content:space-between;gap:14px;align-items:center}.brand b{font-size:14px;letter-spacing:.06em;text-transform:uppercase}.step{font-size:12px;color:var(--muted)}.bar{height:5px;background:#dce8e6;border-radius:99px;margin-top:10px;overflow:hidden}.bar span{display:block;height:100%;width:0;background:var(--accent);transition:width .35s ease}
+main{width:100%;max-width:760px;margin:0 auto;padding:24px 16px 44px;flex:1}.screen{display:none;animation:rise .35s ease}.screen.active{display:block}@keyframes rise{from{opacity:.3;transform:translateY(10px)}to{opacity:1;transform:none}}
+.hero{padding:28px 24px;background:linear-gradient(145deg,#103f47,#0d6670);color:#fff;border-radius:24px;box-shadow:var(--shadow);margin-bottom:18px}.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;opacity:.74;font-weight:750}.hero h1{font-size:clamp(32px,8vw,54px);line-height:.96;margin:16px 0}.hero p{line-height:1.55;max-width:44rem;margin:0;opacity:.92}.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:var(--shadow);margin:14px 0}.card h2{font-size:25px;line-height:1.12;margin:5px 0 12px}.card h3{margin:4px 0 10px;font-size:18px}.card p{line-height:1.58;margin:8px 0;color:#29494d}.clinical{display:grid;gap:8px;margin:14px 0}.clinical div{padding:11px 12px;background:#f3f8f7;border:1px solid #e0ecea;border-radius:12px}.clinical strong{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.media{overflow:hidden;border-radius:18px;background:#071b1f;margin:14px 0}.media video{display:block;width:100%;max-height:66vh;background:#000}.imgbox{background:#f8fbfa;border:1px solid var(--line);border-radius:18px;padding:10px;margin:14px 0}.imgbox img{display:block;width:100%;height:auto;border-radius:12px}.portrait{display:grid;grid-template-columns:105px 1fr;gap:14px;align-items:center}.portrait img{width:105px;height:132px;object-fit:cover;border-radius:16px}.quote{font-size:20px;line-height:1.4;font-weight:650}.speaker{color:var(--accent);font-size:12px;text-transform:uppercase;letter-spacing:.1em;font-weight:800;margin-bottom:6px}
+.options{display:grid;gap:10px;margin:16px 0}.opt{width:100%;text-align:left;padding:15px 16px;border:1px solid #cddedb;background:#fff;border-radius:15px;color:var(--ink);cursor:pointer;transition:.15s;display:flex;gap:12px;align-items:flex-start}.opt:hover{border-color:#76aeb1;transform:translateY(-1px)}.opt.selected{border-color:var(--accent);background:#edf7f6;box-shadow:0 0 0 2px rgba(13,103,113,.12)}.letter{width:26px;height:26px;flex:0 0 26px;border-radius:50%;background:#e7f0ef;display:grid;place-items:center;font-size:12px;font-weight:800}.opt.selected .letter{background:var(--accent);color:#fff}.actions{display:flex;gap:10px;margin-top:18px}.primary,.secondary{border:0;border-radius:14px;padding:14px 18px;cursor:pointer;font-weight:760}.primary{background:var(--accent);color:#fff;flex:1}.primary:disabled{opacity:.38;cursor:not-allowed}.secondary{background:#e6efed;color:var(--accent2)}.reveal{background:linear-gradient(145deg,#f6fbfa,#e8f3f1);border:1px solid #cfe2df}.bigline{font-size:clamp(29px,7vw,48px);font-weight:850;line-height:1.02;margin:15px 0;letter-spacing:-.025em}.small{font-size:13px;color:var(--muted);line-height:1.55}.pill{display:inline-block;border:1px solid #bcd3d0;border-radius:99px;padding:7px 10px;font-size:12px;font-weight:750;margin:3px 5px 3px 0;background:#f7fbfa}.resultGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:15px 0}.metric{border:1px solid var(--line);background:#f8fbfa;border-radius:14px;padding:12px 8px;text-align:center}.metric b{display:block;font-size:22px}.metric span{font-size:11px;color:var(--muted)}.finalmsg{font-size:clamp(30px,9vw,58px);line-height:.98;font-weight:900;letter-spacing:-.04em;margin:18px 0}.footer{text-align:center;font-size:11px;color:#73898b;padding:22px}.hidden{display:none!important}@media(max-width:520px){.portrait{grid-template-columns:78px 1fr}.portrait img{width:78px;height:105px}.quote{font-size:18px}.resultGrid{grid-template-columns:1fr}.hero,.card{border-radius:18px}.card{padding:17px}}
+
+/* V6 — cinematic clinical interface */
+:root{--bg:#061114;--ink:#102f34;--muted:#60777b;--card:rgba(255,255,255,.975);--accent:#087e88;--accent2:#07515a;--line:rgba(12,89,96,.13);--shadow:0 26px 70px rgba(0,25,29,.22)}
+body{background:radial-gradient(circle at 50% -10%,#16454a 0,#0a2226 28%,#061114 66%);background-attachment:fixed}
+.top{background:rgba(5,19,22,.78);border-bottom:1px solid rgba(255,255,255,.09);backdrop-filter:blur(18px) saturate(130%)}
+.topin{max-width:820px;padding:15px 20px}.brand b{color:#f3fbfa;font-size:13px;letter-spacing:.14em}.step{color:#9cb7b8}.bar{height:3px;background:rgba(255,255,255,.12)}.bar span{background:linear-gradient(90deg,#49c6c2,#b8ece5);box-shadow:0 0 18px rgba(73,198,194,.7)}
+main{max-width:820px;padding:32px 18px 60px}.screen{animation:cinemaIn .48s cubic-bezier(.2,.8,.2,1)}@keyframes cinemaIn{from{opacity:0;transform:translateY(16px) scale(.992)}to{opacity:1;transform:none}}
+.hero{position:relative;overflow:hidden;padding:38px 32px;background:linear-gradient(135deg,#0a5962,#07383f 62%,#092b31);border:1px solid rgba(255,255,255,.12);border-radius:28px;box-shadow:0 30px 80px rgba(0,0,0,.28)}
+.hero:after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;right:-110px;top:-120px;background:radial-gradient(circle,rgba(107,221,211,.24),transparent 68%);pointer-events:none}.hero h1{letter-spacing:-.045em}.hero p{color:rgba(255,255,255,.84)}
+.card{border-radius:24px;padding:24px;border:1px solid rgba(255,255,255,.75);box-shadow:0 22px 60px rgba(0,18,21,.19);background:linear-gradient(180deg,rgba(255,255,255,.99),rgba(246,251,250,.98))}.card h2{font-size:clamp(25px,5vw,34px);letter-spacing:-.025em}.card h3{font-size:20px}.card p{color:#315257}
+.clinical{grid-template-columns:repeat(3,1fr);gap:10px}.clinical div{background:linear-gradient(180deg,#f1f8f7,#edf6f5);border-color:#dcebe9;padding:14px}.clinical strong{color:#527276}
+.media{position:relative;border-radius:22px;border:1px solid rgba(255,255,255,.13);box-shadow:0 20px 48px rgba(0,0,0,.24);background:#020809}.media:before{content:"EXPLORACIÓN";position:absolute;z-index:2;left:14px;top:14px;padding:6px 9px;border-radius:99px;background:rgba(0,16,18,.65);backdrop-filter:blur(8px);color:#d9f5f1;font-size:9px;font-weight:850;letter-spacing:.16em;pointer-events:none}.media video{max-height:70vh}
+.imgbox{padding:7px;border-radius:20px;background:#eaf2f1;border-color:#d6e5e3;box-shadow:inset 0 0 0 1px rgba(255,255,255,.7)}.imgbox img{border-radius:15px}
+.options{gap:11px}.opt{position:relative;padding:17px;border-radius:17px;border-color:#d4e2e0;background:rgba(255,255,255,.9);box-shadow:0 4px 15px rgba(14,66,71,.035);transition:.18s ease}.opt:hover{border-color:#65b5b6;transform:translateY(-2px);box-shadow:0 10px 24px rgba(8,96,103,.10)}.opt.selected{background:linear-gradient(135deg,#e8f7f5,#f4fbfa);border-color:#148d94;box-shadow:0 0 0 3px rgba(20,141,148,.10),0 12px 28px rgba(8,96,103,.11)}.letter{background:#e6f0ef;color:#416b70}.opt.selected .letter{background:linear-gradient(135deg,#0c8b93,#07646d)}
+.primary,.secondary{min-height:50px;border-radius:15px;transition:.18s ease}.primary{background:linear-gradient(135deg,#0b858d,#075b64);box-shadow:0 10px 22px rgba(7,91,100,.20)}.primary:not(:disabled):hover{transform:translateY(-1px);box-shadow:0 14px 28px rgba(7,91,100,.28)}.secondary{background:#e6f0ef}.reveal{background:linear-gradient(145deg,#eef9f7,#e3f2ef);border-color:#c5dfdc}.quote{font-size:clamp(20px,4vw,27px);letter-spacing:-.015em}.portrait img{box-shadow:0 10px 28px rgba(0,34,38,.15)}
+.finalmsg{font-size:clamp(38px,8vw,65px);line-height:.98;letter-spacing:-.05em;max-width:680px}.resultGrid{gap:10px}.metric{border-radius:18px;background:linear-gradient(180deg,#f1f8f7,#e9f4f2);border:1px solid #d8e8e6;padding:18px}.metric b{font-size:30px}.pill{background:#e8f4f2;border:1px solid #d2e5e2;padding:9px 12px;margin:5px 5px 0 0;border-radius:99px}.footer{color:#779395;padding-bottom:28px}
+@media(max-width:640px){main{padding:22px 12px 48px}.hero{padding:30px 22px;border-radius:23px}.card{padding:19px;border-radius:20px}.clinical{grid-template-columns:1fr}.portrait{grid-template-columns:82px 1fr}.portrait img{width:82px;height:108px}.actions{position:sticky;bottom:10px;z-index:10;padding:7px;background:rgba(246,250,249,.88);backdrop-filter:blur(12px);border-radius:18px;box-shadow:0 8px 30px rgba(0,25,29,.12)}}
+
+
+/* V7 — premium editorial redesign */
+:root{--cyan:#68ddd5;--ice:#e9fffb;--navy:#041013;--surface:#f9fcfb}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(115deg,rgba(104,221,213,.035),transparent 30%,transparent 70%,rgba(104,221,213,.025));z-index:-1}
+.topin{max-width:940px}.brand b{font-size:12px}.step{font-variant-numeric:tabular-nums}
+main{max-width:940px;padding-top:48px;padding-bottom:90px}
+.screen.active{display:grid;gap:28px}.screen>.card,.screen>.hero{margin:0}
+.hero{padding:54px 48px;border-radius:34px;min-height:310px;display:flex;flex-direction:column;justify-content:center}
+.hero .eyebrow{margin-bottom:6px}.hero h1{font-size:clamp(44px,8vw,76px);max-width:760px;margin:18px 0 24px}.hero p{font-size:17px;line-height:1.72;max-width:690px}
+.eyebrow{color:#08737c;opacity:1;font-size:10px;letter-spacing:.22em;font-weight:900}.hero .eyebrow{color:#a6eee7}
+.card{padding:34px 36px;border-radius:28px;box-shadow:0 25px 70px rgba(0,18,21,.18)}
+.card h2{font-size:clamp(29px,5vw,40px);line-height:1.08;margin:10px 0 20px}.card h3{font-size:24px;line-height:1.18;margin:4px 0 22px}.card p{font-size:16px;line-height:1.72;margin:14px 0}
+.clinical{grid-template-columns:repeat(3,1fr);gap:14px;margin:26px 0 30px}.clinical div{padding:20px 18px;border-radius:18px;line-height:1.45}.clinical strong{margin-bottom:9px;font-size:10px;letter-spacing:.13em}
+.media{margin:28px 0 8px;border-radius:25px;box-shadow:0 28px 65px rgba(0,0,0,.32)}.media:before{left:18px;top:18px;padding:8px 11px}.media video{max-height:74vh}
+.imgbox{margin:28px auto 24px;padding:12px;border-radius:24px;max-width:760px}.imgbox img{border-radius:17px}
+.options{gap:14px;margin:26px 0 8px}.opt{padding:20px 20px;border-radius:20px;min-height:66px;align-items:center;font-size:16px;line-height:1.42}.letter{width:32px;height:32px;flex-basis:32px;font-size:12px}.opt.selected{transform:translateX(4px)}
+.actions{margin-top:30px;padding-top:24px;border-top:1px solid #dce9e7}.primary,.secondary{min-height:56px;padding:16px 22px;border-radius:17px}.primary{font-size:15px;letter-spacing:.01em}.secondary{font-size:14px}
+.portrait{grid-template-columns:126px 1fr;gap:26px;padding:26px 30px}.portrait img{width:126px;height:152px;border-radius:21px}.speaker{font-size:10px;letter-spacing:.16em;margin-bottom:11px}.quote{font-size:clamp(22px,4vw,30px);line-height:1.38}
+.reveal{border-left:5px solid #1b9da1}.bigline{padding:18px 0 8px;color:#075b64}
+.small{margin-top:22px!important;padding:14px 16px;border-radius:14px;background:#f0f7f6;font-size:13px!important}
+.resultGrid{gap:14px;margin:26px 0}.metric{padding:26px 12px;border-radius:22px}.metric b{font-size:38px;margin-bottom:5px}.metric span{font-size:12px}.finalmsg{font-size:clamp(46px,8vw,78px);max-width:780px;margin:22px 0 30px}.pill{padding:10px 14px}
+.footer{padding:10px 20px 36px;color:#6f9091;letter-spacing:.08em;text-transform:uppercase;font-size:9px}
+/* visual chapter markers */
+.screen[data-step="1"]:before,.screen[data-step="2"]:before,.screen[data-step="3"]:before,.screen[data-step="4"]:before,.screen[data-step="5"]:before,.screen[data-step="6"]:before,.screen[data-step="7"]:before,.screen[data-step="8"]:before,.screen[data-step="9"]:before,.screen[data-step="10"]:before{display:block;color:#8fb0b1;font-size:10px;font-weight:850;letter-spacing:.22em;text-transform:uppercase;margin:0 4px -12px}
+.screen[data-step="1"]:before{content:"01  ·  MIRAR"}.screen[data-step="2"]:before{content:"02  ·  MEDIR"}.screen[data-step="3"]:before{content:"03  ·  PREDECIR"}.screen[data-step="4"]:before{content:"04  ·  DESCUBRIR"}.screen[data-step="5"]:before{content:"05  ·  COMPROBAR"}.screen[data-step="6"]:before{content:"06  ·  RECONSIDERAR"}.screen[data-step="7"]:before{content:"07  ·  DECIDIR"}.screen[data-step="8"]:before{content:"08  ·  ESCUCHAR"}.screen[data-step="9"]:before{content:"09  ·  RESOLVER"}.screen[data-step="10"]:before{content:"10  ·  INTEGRAR"}
+@media(min-width:760px){.screen[data-step="4"] .portrait,.screen[data-step="8"] .portrait{max-width:82%;margin-left:0;margin-right:auto;text-align:left}.screen[data-step="4"] .card,.screen[data-step="8"] .card{text-align:left}}
+@media(max-width:640px){main{padding:30px 13px 62px}.screen.active{gap:18px}.hero{padding:38px 25px;min-height:280px;border-radius:26px}.hero h1{font-size:46px}.hero p{font-size:15px}.card{padding:24px 20px;border-radius:23px}.card h2{font-size:30px}.card p{font-size:15px}.clinical{grid-template-columns:1fr;gap:10px;margin:20px 0}.clinical div{padding:16px}.options{gap:11px;margin-top:20px}.opt{padding:17px 15px;min-height:61px;font-size:15px}.media{margin:22px 0 4px;border-radius:19px}.portrait{grid-template-columns:78px 1fr;gap:15px;padding:19px}.portrait img{width:78px;height:102px;border-radius:16px}.quote{font-size:20px}.actions{position:static;padding:20px 0 0;background:transparent;backdrop-filter:none;box-shadow:none;border-radius:0}.actions .primary{flex:1}.finalmsg{font-size:45px}.screen:before{margin-left:5px!important}}
+
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top"><div class="topin"><div class="brand"><b>¿Qué harías tú?</b><span class="step" id="stepLabel">Caso clínico · Meatoplastia</span></div><div class="bar"><span id="progress"></span></div></div></header>
+<main>
+<section class="screen active" data-step="0">
+ <div class="hero"><div class="eyebrow">Simulación clínica interactiva</div><h1>Una cavidad.<br>Un meato.<br>Una decisión.</h1><p>Un caso real de secuelas de colesteatoma. Observa, interpreta y decide. La información aparecerá en el mismo orden en que condicionaría una decisión clínica.</p></div>
+ <div class="card"><h2>El caso</h2><div class="clinical"><div><strong>Paciente</strong>Mujer de 37 años.</div><div><strong>Antecedente</strong>Colesteatoma derecho intervenido mediante mastoidectomía abierta–timpanoplastia hace 27 años.</div><div><strong>Evolución</strong>Presentó posteriormente otorrea mixta cavitaria–tubárica Merchant III, con una mastoidectomía enorme y granulante.</div></div><p>Se decidió realizar una <strong>rehabilitación cavitaria</strong>: obliteración con hueso autólogo–areola–colgajo PAA, TORP bypass, timpanoplastia con areola y cartílago pantimpánico supraprotésico, flap de perforantes estándar, facial al ras, PRF y dilatación tubárica.</p><p>Tras la intervención, la paciente <strong>perdió el seguimiento durante aproximadamente 1,5 años</strong>. Cuando vuelve a consulta comienza nuestro caso.</p><button class="primary" onclick="go(1)">Comenzar el caso →</button></div>
+</section>
+
+<section class="screen" data-step="1">
+ <div class="card"><div class="eyebrow">Exploración 01</div><h2>Primera impresión</h2><p>El vídeo comienza mostrando el <strong>oído izquierdo, de aspecto normal</strong>, y después pasa al <strong>oído derecho</strong>, donde se encuentra el problema. Observa especialmente el tamaño y la configuración del meato derecho.</p><div class="media"><video controls playsinline preload="metadata" poster="poster_video1.png"><source src="video1_exploracion_externa.mp4" type="video/mp4"></video></div></div>
+ <div class="card"><h3>¿Qué impresión inicial te produce esta meatoplastia?</h3><div class="options" data-q="q1" data-single>
+  <button class="opt" data-v="adequate"><span class="letter">A</span><span>Adecuada.</span></button><button class="opt" data-v="just"><span class="letter">B</span><span>Algo justa, pero probablemente funcional.</span></button><button class="opt" data-v="insufficient"><span class="letter">C</span><span>Claramente insuficiente.</span></button><button class="opt" data-v="uncertain"><span class="letter">D</span><span>No puedo valorarla sin explorar la cavidad.</span></button>
+ </div><div class="actions"><button class="secondary" onclick="go(0)">← Atrás</button><button class="primary" data-next="2" disabled>Confirmar impresión</button></div></div>
+</section>
+
+<section class="screen" data-step="2">
+ <div class="card"><div class="eyebrow">Información previa</div><h2>Primera audiometría</h2><div class="imgbox"><img src="audiometria_inicial.png" alt="Audiometría tonal con auriculares convencionales"></div><div class="clinical" style="grid-template-columns:1fr 1fr"><div><strong>Técnica</strong>Auriculares convencionales</div><div><strong>Hallazgo</strong>Hipoacusia de transmisión en oído derecho</div></div><button class="primary" onclick="go(3)">Hacer mi predicción →</button></div>
+</section>
+
+<section class="screen" data-step="3">
+ <div class="card"><h2>Viendo el aspecto del meato y la audiometría, ¿qué esperarías de esta cavidad?</h2><div class="options" data-q="q2" data-single>
+  <button class="opt" data-v="debris"><span class="letter">1</span><span>Cavidad problemática, con acumulación de detritus.</span></button>
+  <button class="opt" data-v="hard"><span class="letter">2</span><span>Cavidad difícil de revisar y limpiar.</span></button>
+  <button class="opt" data-v="wet"><span class="letter">3</span><span>Cavidad probablemente húmeda o inestable.</span></button>
+  <button class="opt" data-v="acceptable"><span class="letter">4</span><span>Cavidad aceptable si el fondo está bien diseñado.</span></button>
+  <button class="opt" data-v="unknown"><span class="letter">5</span><span>No se puede juzgar sin ver comportamiento clínico.</span></button>
+ </div><p class="small">No sabrás todavía si tu respuesta encaja con el caso.</p><div class="actions"><button class="secondary" onclick="go(2)">← Atrás</button><button class="primary" data-next="4" disabled>Confirmar decisión</button></div></div>
+</section>
+
+<section class="screen" data-step="4">
+ <div class="card reveal"><div class="eyebrow">Primer giro del caso</div><h2>Ahora sí: explora la cavidad</h2><p>Ya has hecho tu predicción sin conocer su interior. Mira ahora la exploración completa y saca tus propias conclusiones antes de continuar.</p><div class="media"><video controls playsinline preload="metadata" poster="poster_video2.png"><source src="video2_exploracion_cavidad.mp4" type="video/mp4"></video></div></div>
+ <div class="card"><div class="eyebrow">Confirmación clínica</div><h2>¿Y qué dice la paciente?</h2></div>
+ <div class="card portrait"><img src="dr_pensativo.jpeg" alt="Dr. López Navas"><div><div class="speaker">Dr. LN</div><div class="quote">¿Qué tal? ¿Cómo te encuentras?</div></div></div>
+ <div class="card"><div class="speaker">Paciente</div><div class="quote">Bueno, bastante bien. No me puedo quejar…</div></div>
+ <div class="card portrait"><img src="dr_sorpresa.jpeg" alt="Dr. López Navas"><div><div class="speaker">Dr. LN</div><div class="quote">¿De veras? Es tu momento de quejarte…</div></div></div>
+ <div class="card reveal"><div class="speaker">Paciente</div><div class="quote">Sí, ha dejado de supurarme, no me duele, me lo mojo sin problemas y escucho bastante bien.</div><button class="primary" style="margin-top:18px" onclick="go(5)">Continuar con la valoración funcional →</button></div>
+</section>
+
+<section class="screen" data-step="5">
+ <div class="card reveal"><div class="eyebrow">Comprobación funcional</div><h2>¿Y si eliminamos la presión sobre el meato?</h2><p>Repetimos la audiometría, pero utilizando <strong>auriculares de inserción</strong>. El inserto mantiene el meato abierto y evita el colapso producido por el auricular convencional.</p><div class="imgbox"><img src="audiometria_insercion.png" alt="Audiometría tonal con auriculares de inserción"></div><p class="bigline" style="font-size:clamp(24px,6vw,38px)">El componente transmisivo prácticamente desaparece.</p><p>La comparación sugiere que buena parte de la hipoacusia de transmisión observada inicialmente era consecuencia del <strong>colapso mecánico del meato por el auricular convencional</strong>, no del comportamiento de la cavidad.</p></div>
+ <div class="card"><h2>Con esta nueva información, ¿qué pesa más para definir una “buena meatoplastia”?</h2><p>Selecciona todo lo que consideres relevante.</p><div class="options" data-q="q3" data-multi>
+  <button class="opt" data-v="size"><span class="letter">1</span><span>Tamaño visible del meato.</span></button>
+  <button class="opt" data-v="access"><span class="letter">2</span><span>Accesibilidad completa a la cavidad.</span></button>
+  <button class="opt" data-v="dry"><span class="letter">3</span><span>Ausencia de detritus y otorrea.</span></button>
+  <button class="opt" data-v="clean"><span class="letter">4</span><span>Facilidad de limpieza por el paciente o el médico.</span></button>
+  <button class="opt" data-v="stable"><span class="letter">5</span><span>Estabilidad a largo plazo.</span></button>
+ </div><div class="actions"><button class="secondary" onclick="go(4)">← Atrás</button><button class="primary" data-next="6" disabled>Continuar</button></div></div>
+</section>
+
+<section class="screen" data-step="6">
+ <div class="card"><div class="eyebrow">Cambio de opinión</div><h2>Con lo que sabes ahora, ¿cambiarías tu valoración inicial de la meatoplastia?</h2><div class="options" data-q="q4" data-single><button class="opt" data-v="yes"><span class="letter">A</span><span>Sí, cambiaría mi valoración.</span></button><button class="opt" data-v="no"><span class="letter">B</span><span>No, mantengo mi impresión inicial.</span></button></div><div class="actions"><button class="secondary" onclick="go(5)">← Atrás</button><button class="primary" data-next="7" disabled>Confirmar</button></div></div>
+</section>
+
+<section class="screen" data-step="7">
+ <div class="card"><h2>Si esta paciente está asintomática y la cavidad es estable, ¿harías algo?</h2><div class="options" data-q="q5" data-single>
+  <button class="opt" data-v="follow"><span class="letter">1</span><span>Nada, solo seguimiento habitual.</span></button>
+  <button class="opt" data-v="discharge"><span class="letter">2</span><span>Nada, le propondría el alta del seguimiento.</span></button>
+  <button class="opt" data-v="surgery"><span class="letter">3</span><span>Revisión quirúrgica de meatoplastia.</span></button>
+  <button class="opt" data-v="symptom"><span class="letter">4</span><span>Solo revisaría si aparece otorrea o detritus.</span></button>
+  <button class="opt" data-v="explorable"><span class="letter">5</span><span>Depende de si puede ser explorada por otro otólogo.</span></button>
+ </div><div class="actions"><button class="secondary" onclick="go(6)">← Atrás</button><button class="primary" data-next="8" disabled>Esta es mi decisión</button></div></div>
+</section>
+
+<section class="screen" data-step="8">
+ <div class="card portrait"><img src="dr_pensativo.jpeg" alt="Dr. López Navas"><div><div class="speaker">Dr. LN</div><div class="quote">Quéjate por favor, aunque solo sea un poquito.</div></div></div>
+ <div class="card reveal"><div class="speaker">Paciente</div><div class="quote">Hombre... no puedo ponerme mis auriculares de diadema en el trabajo y se me suele taponer el oído al comer...</div></div>
+ <div class="card portrait"><img src="dr_idea.jpeg" alt="Dr. López Navas"><div><div class="speaker">Dr. LN</div><div class="quote">¡No se hable más!</div></div></div>
+ <div class="card"><h2>¿Esta nueva información cambia tu decisión?</h2><div class="options" data-q="q6" data-single><button class="opt" data-v="observe"><span class="letter">A</span><span>No. Mantendría observación.</span></button><button class="opt" data-v="revise"><span class="letter">B</span><span>Sí. Ahora plantearía revisión de la meatoplastia.</span></button><button class="opt" data-v="more"><span class="letter">C</span><span>Necesito más información antes de decidir.</span></button></div><div class="actions"><button class="secondary" onclick="go(7)">← Atrás</button><button class="primary" data-next="9" disabled>Ver qué ocurrió</button></div></div>
+</section>
+
+<section class="screen" data-step="9">
+ <div class="card"><div class="eyebrow">Resolución</div><h2>Meatoplastia en M</h2><div class="clinical" style="grid-template-columns:1fr 1fr"><div><strong>Problema real</strong>No puede utilizar auriculares de diadema en el trabajo y presenta taponamiento al comer.</div><div><strong>Decisión</strong>Meatoplastia para mejorar la apertura del meato.</div></div><div class="media"><video controls playsinline preload="metadata" poster="poster_video3.png"><source src="video3_meatoplastia.mp4" type="video/mp4"></video></div><button class="primary" onclick="go(10)">Ir al mensaje docente →</button></div>
+</section>
+
+<section class="screen" data-step="10">
+ <div class="card"><h2>¿Qué mensaje extraerías tras ver este caso?</h2><p>Puedes seleccionar varios.</p><div class="options" data-q="q7" data-multi>
+  <button class="opt" data-v="small"><span class="letter">1</span><span>No todas las meatoplastias pequeñas fracasan.</span></button>
+  <button class="opt" data-v="short"><span class="letter">2</span><span>No uses este caso como excusa para quedarte corto.</span></button>
+  <button class="opt" data-v="design"><span class="letter">3</span><span>El diseño de la cavidad importa tanto como el meato.</span></button>
+  <button class="opt" data-v="function"><span class="letter">4</span><span>La función manda sobre la apariencia.</span></button>
+  <button class="opt" data-v="cartilage"><span class="letter">5</span><span>Da igual lo que digan, quita más cartílago.</span></button>
+ </div><div class="actions"><button class="secondary" onclick="go(9)">← Atrás</button><button class="primary" data-finish disabled>Ver mi perfil</button></div></div>
+</section>
+
+<section class="screen" data-step="11">
+ <div class="hero"><div class="eyebrow">Debriefing</div><div class="finalmsg">Una buena cavidad salva una mala meatoplastia.</div><p>El tamaño visible del meato es solo una pieza del problema. En este caso, los auriculares convencionales colapsaban el meato derecho y simulaban un importante componente transmisivo; con auriculares de inserción, ese componente prácticamente desaparecía. La accesibilidad, el comportamiento clínico, la función y las necesidades reales de la paciente terminan definiendo la decisión.</p></div>
+ <div class="card"><h2 id="profileTitle">Tu perfil</h2><p id="profileText"></p><div class="resultGrid"><div class="metric"><b id="mAnat">—</b><span>Lectura anatómica</span></div><div class="metric"><b id="mFunc">—</b><span>Orientación funcional</span></div><div class="metric"><b id="mAdapt">—</b><span>Adaptación a nueva información</span></div></div><div id="summaryPills"></div></div>
+ <div class="actions"><button class="primary" onclick="restart()">Reiniciar caso</button></div>
+</section>
+</main><div class="footer">Taller de meatoplastias · Dr. López Navas</div></div>
+<script>
+const answers={}; const screens=[...document.querySelectorAll('.screen')];
+function go(n){screens.forEach(s=>s.classList.remove('active')); const s=document.querySelector(`[data-step="${n}"]`); s.classList.add('active'); window.scrollTo({top:0,behavior:'smooth'}); const pct=Math.round(n/11*100); document.getElementById('progress').style.width=pct+'%'; const labels=['Presentación','Exploración externa','Audiometría','Predicción','Exploración cavitaria','Comprobación funcional','Reconsideración','Decisión clínica','Necesidad funcional','Meatoplastia en M','Mensaje final','Debriefing']; document.getElementById('stepLabel').textContent=labels[n];}
+document.querySelectorAll('.options').forEach(group=>{group.querySelectorAll('.opt').forEach(btn=>btn.addEventListener('click',()=>{const q=group.dataset.q;if(group.hasAttribute('data-single')){group.querySelectorAll('.opt').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');answers[q]=btn.dataset.v;}else{btn.classList.toggle('selected');answers[q]=[...group.querySelectorAll('.opt.selected')].map(b=>b.dataset.v);}const card=group.closest('.card');const next=card.querySelector('[data-next], [data-finish]');if(next) next.disabled=!(answers[q] && (Array.isArray(answers[q])?answers[q].length:1));}));});
+document.querySelectorAll('[data-next]').forEach(b=>b.onclick=()=>go(+b.dataset.next));document.querySelector('[data-finish]').onclick=finish;
+function finish(){
+ let anat=0,func=0,adapt=0;
+ if(['insufficient','uncertain','just'].includes(answers.q1)) anat+=1;
+ if(['acceptable','unknown','hard'].includes(answers.q2)) anat+=1;
+ const q3=answers.q3||[]; anat += q3.includes('access')?1:0; func += ['dry','clean','stable'].filter(x=>q3.includes(x)).length;
+ if(answers.q4==='yes') adapt+=2; else adapt+=1;
+ if(['follow','explorable'].includes(answers.q5)) func+=1;
+ if(answers.q6==='revise') {adapt+=2;func+=1;} else if(answers.q6==='more'){adapt+=1;func+=1;}
+ const q7=answers.q7||[]; if(q7.includes('design')) anat+=1; if(q7.includes('function')) func+=2; if(q7.includes('small')) func+=1; if(q7.includes('short')) anat+=1;
+ const A=Math.min(100,Math.round(anat/5*100)),F=Math.min(100,Math.round(func/7*100)),D=Math.min(100,Math.round(adapt/4*100));
+ document.getElementById('mAnat').textContent=A+'%';document.getElementById('mFunc').textContent=F+'%';document.getElementById('mAdapt').textContent=D+'%';
+ let title,text;
+ if(F>=75 && D>=70){title='Perfil: funcionalista adaptable';text='Has dado mucho peso al comportamiento real del oído y has sabido modificar tu postura cuando aparecieron datos nuevos.'}
+ else if(A>=70 && F<65){title='Perfil: anatomista exigente';text='Tu razonamiento se apoya especialmente en la anatomía y en la accesibilidad. El caso invita a contrastar esa lectura con función y síntomas.'}
+ else if(answers.q5==='surgery'){title='Perfil: intervencionista';text='Tu umbral para revisar quirúrgicamente es bajo. El caso recuerda que una apariencia imperfecta puede coexistir con una cavidad estable y funcional.'}
+ else {title='Perfil: otólogo prudente';text='Has mantenido un equilibrio entre anatomía, comportamiento clínico y necesidad de nueva información antes de intervenir.'}
+ document.getElementById('profileTitle').textContent=title;document.getElementById('profileText').textContent=text;
+ const pills=[]; if(q7.includes('function'))pills.push('Función > apariencia'); if(q7.includes('short'))pills.push('No quedarse corto'); if(q7.includes('small'))pills.push('Meato pequeño ≠ fracaso'); if(q7.includes('cartilage'))pills.push('“Quita más cartílago” 😄');
+ document.getElementById('summaryPills').innerHTML=pills.map(x=>`<span class="pill">${x}</span>`).join(''); go(11);
+}
+function restart(){Object.keys(answers).forEach(k=>delete answers[k]);document.querySelectorAll('.opt').forEach(b=>b.classList.remove('selected'));document.querySelectorAll('[data-next],[data-finish]').forEach(b=>b.disabled=true);go(0)}
+</script>
+</body></html>

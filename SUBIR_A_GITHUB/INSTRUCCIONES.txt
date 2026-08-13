@@ -1,0 +1,6 @@
+INSTRUCCIONES:
+1. Abre tu repositorio fcolnavas/meatoplastia en GitHub.
+2. Pulsa Add file > Upload files.
+3. Arrastra TODOS los archivos de esta carpeta y pulsa Commit changes.
+4. Ve a Settings > Pages. En Build and deployment elige Deploy from a branch. Selecciona main y /(root), luego Save.
+5. La web quedará en https://fcolnavas.github.io/meatoplastia/
